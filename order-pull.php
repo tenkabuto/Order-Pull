@@ -15,5 +15,27 @@ if (version_compare($wp_version, "2.8", "<")) {
   exit($exit_msg);
 }
 
-class OrderPull {}
+class OrderPull {
+	var $plugin_url;
+	
+	// For the time being, let's effectively setup a useless page
+	function page_handler() {
+		// include('order-pull-page.php');
+		print "Hello world!";
+	}
+	
+	// Initialize the plugin
+	function OrderPull() {
+		$this->plugin_url = trailingslashit( WP_PLUGIN_URL.'/'.dirname( plugin_basename(__FILE__) );
+		
+		// Add page
+		add_action('admin_menu', array(&$this, 'admin_menu'));
+	}
+	
+	// Hook the options page
+	function admin_menu() {
+		// The designation of add_MANAGEMENT_page causes the menu item to be listed under the Tools menu!
+		add_management_page('Order Pull Output', 'Order Pull', 8, basename(__FILE__), array(&$this, 'page_handler'));
+	}
+}
 ?>
