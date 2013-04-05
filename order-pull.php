@@ -43,6 +43,6 @@ class OrderPull {
 $OrderPull = new OrderPull();
 if (isset($OrderPull)) {
 	// Register the activation function by passing the reference to my instance
-	register_activation_hook( __FILE__, array(&$OrderPull, 'OrderPull'))
+	register_activation_hook( __FILE__, array(&$OrderPull, 'OrderPull') );
 }
 ?>
