@@ -20,8 +20,22 @@ class OrderPull {
 	
 	// For the time being, let's effectively setup a useless page
 	function page_handler() {
-		// include('order-pull-page.php');
-		print "Hello world!";
+		print '<table id="orders">';
+		
+		query_posts( 'year=2013&post_count=3' );
+		global $wp_query;
+		
+		// the Loop
+		while (have_posts()) : the_post();
+?>
+			<tr>
+			<td><?php the_time('m.d.y');?></td>
+			<td><?php the_title();?></td>
+			</tr>
+<?php
+		endwhile;
+		
+		print '</table>';
 	}
 	
 	// Initialize the plugin
