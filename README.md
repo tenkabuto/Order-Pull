@@ -1,4 +1,4 @@
-# Pull 'n Print Orders
+# Order Pull
 Creates a new admin page containing only a table, one that's filled with precisely the information you need from the orders you're focusing on.
 
 ## Roadmap
