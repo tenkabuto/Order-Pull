@@ -38,4 +38,11 @@ class OrderPull {
 		add_management_page('Order Pull Output', 'Order Pull', 'edit_posts', basename(__FILE__), array(&$this, 'page_handler'));
 	}
 }
+
+// Create a new instance of the class
+$OrderPull = new OrderPull();
+if (isset($OrderPull)) {
+	// Register the activation function by passing the reference to my instance
+	register_activation_hook( __FILE__, array(&$OrderPull, 'OrderPull'))
+}
 ?>
