@@ -35,7 +35,7 @@ class OrderPull {
 	// Hook the options page
 	function admin_menu() {
 		// The designation of add_MANAGEMENT_page causes the menu item to be listed under the Tools menu!
-		add_management_page('Order Pull Output', 'Order Pull', 8, basename(__FILE__), array(&$this, 'page_handler'));
+		add_management_page('Order Pull Output', 'Order Pull', 'edit_posts', basename(__FILE__), array(&$this, 'page_handler'));
 	}
 }
 ?>
