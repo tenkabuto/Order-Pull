@@ -20,7 +20,7 @@ class OrderPull {
 	
 	// For the time being, let's effectively setup a useless page
 	function page_handler() {
-		print '<table id="orders">';
+		print '<table id="orders" class="wp-list-table widefat fixed posts" cellspacing="0">';
 		
 		query_posts( 'year=2013&post_count=3' );
 		global $wp_query;
