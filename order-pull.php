@@ -26,7 +26,7 @@ class OrderPull {
 	
 	// Initialize the plugin
 	function OrderPull() {
-		$this->plugin_url = trailingslashit( WP_PLUGIN_URL.'/'.dirname( plugin_basename(__FILE__) );
+		$this->plugin_url = trailingslashit( WP_PLUGIN_URL.'/'.dirname( plugin_basename(__FILE__) ));
 		
 		// Add page
 		add_action('admin_menu', array(&$this, 'admin_menu'));
