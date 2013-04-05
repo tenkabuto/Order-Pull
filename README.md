@@ -9,3 +9,4 @@ Creates a new admin page containing only a table, one that's filled with precise
 5. Fill the table with info wanted
     * Ship-To Name (First and Last Names)
     * Shipping Address (Street Name, City, State, Zip Code)
+6. Restrict orders pulled to those between an order # range
