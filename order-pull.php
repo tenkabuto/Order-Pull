@@ -14,4 +14,6 @@ $exit_msg = 'WP Delish requires WordPress 2.8 or newer. <a href="http://codex.wo
 if (version_compare($wp_version, "2.8", "<")) {
   exit($exit_msg);
 }
+
+class OrderPull {}
 ?>
