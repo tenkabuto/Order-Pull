@@ -20,17 +20,49 @@ class OrderPull {
 	
 	// For the time being, let's effectively setup a useless page
 	function page_handler() {
-		print '<table id="orders" class="wp-list-table widefat fixed posts" cellspacing="0">';
+		print '<table id="orders" class="wp-list-table widefat fixed posts" cellspacing="0">
+	<thead>
+	<tr>
+		<th scope="col" class="manage-column">First Name</th>
+		<th scope="col" class="manage-column">Last Name</th>
+		<th scope="col" class="manage-column">Company Name</th>
+		<th scope="col" class="manage-column">Shipping Address 1</th>
+		<th scope="col" class="manage-column">Shipping Address 2</th>
+		<th scope="col" class="manage-column">City</th>
+		<th scope="col" class="manage-column">State</th>
+		<th scope="col" class="manage-column">ZIP Code</th>
+	</tr>
+	</thead>';
 		
-		query_posts( 'year=2013&post_count=3' );
+$args = array(
+	'post_type' => 'shop_order',
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'shop_order_status',
+			'field' => 'slug',
+			'terms' => 'processing'
+		),
+	'post_count' => '-1'
+	)
+);
+
+		query_posts( $args );
 		global $wp_query;
 		
 		// the Loop
 		while (have_posts()) : the_post();
 ?>
 			<tr>
-			<td><?php the_time('m.d.y');?></td>
-			<td><?php the_title();?></td>
+			<?php // Many thanks to the answer [here](http://wordpress.org/support/topic/get-two-post-meta-keys-and-values-print-array) on how to use multiple keys by putting them in an array
+$meta_keys = array('_shipping_first_name', '_shipping_last_name', '_shipping_company', '_shipping_address_1', '_shipping_address_2', '_shipping_city');
+// And to the answer [here](http://devhints.wordpress.com/2006/10/21/php-proper-case-function/) for proper case functions
+foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".ucwords(strtolower($value))."</td>"; } }
+
+// These shouldn't be off-case
+$meta_keys = array('_shipping_state', '_shipping_postcode');
+foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".$value."</td>"; } }
+
+// To check custom field values: $custom_fields = get_post_custom(get_the_ID()); echo "<td>"; foreach ( $custom_fields as $key => $value ) { echo $key . " => " . $value . "<br />"; } echo "</td>"; ?></td>
 			</tr>
 <?php
 		endwhile;
