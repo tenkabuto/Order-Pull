@@ -34,17 +34,17 @@ class OrderPull {
 	</tr>
 	</thead>';
 		
-$args = array(
-	'post_type' => 'shop_order',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'shop_order_status',
-			'field' => 'slug',
-			'terms' => 'processing'
-		),
-	'post_count' => '-1'
-	)
-);
+		$args = array(
+			'post_type' => 'shop_order',
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'shop_order_status',
+					'field' => 'slug',
+					'terms' => 'processing'
+				),
+			'post_count' => '-1'
+			)
+		);
 
 		query_posts( $args );
 		global $wp_query;
@@ -52,18 +52,20 @@ $args = array(
 		// the Loop
 		while (have_posts()) : the_post();
 ?>
-			<tr>
-			<?php // Many thanks to the answer [here](http://wordpress.org/support/topic/get-two-post-meta-keys-and-values-print-array) on how to use multiple keys by putting them in an array
-$meta_keys = array('_shipping_first_name', '_shipping_last_name', '_shipping_company', '_shipping_address_1', '_shipping_address_2', '_shipping_city');
-// And to the answer [here](http://devhints.wordpress.com/2006/10/21/php-proper-case-function/) for proper case functions
-foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".ucwords(strtolower($value))."</td>"; } }
+		<tr>
+		<?php 
+		// Many thanks to the answer [here](http://wordpress.org/support/topic/get-two-post-meta-keys-and-values-print-array) on how to use multiple keys by putting them in an array
+		$meta_keys = array('_shipping_first_name', '_shipping_last_name', '_shipping_company', '_shipping_address_1', '_shipping_address_2', '_shipping_city');
+		
+		// And to the answer [here](http://devhints.wordpress.com/2006/10/21/php-proper-case-function/) for proper case functions
+		foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".ucwords(strtolower($value))."</td>"; } }
 
-// These shouldn't be off-case
-$meta_keys = array('_shipping_state', '_shipping_postcode');
-foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".$value."</td>"; } }
+		// These shouldn't be off-case
+		$meta_keys = array('_shipping_state', '_shipping_postcode');
+		foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".$value."</td>"; } }
 
-// To check custom field values: $custom_fields = get_post_custom(get_the_ID()); echo "<td>"; foreach ( $custom_fields as $key => $value ) { echo $key . " => " . $value . "<br />"; } echo "</td>"; ?></td>
-			</tr>
+		// To check custom field values: $custom_fields = get_post_custom(get_the_ID()); echo "<td>"; foreach ( $custom_fields as $key => $value ) { echo $key . " => " . $value . "<br />"; } echo "</td>"; ?></td>
+		</tr>
 <?php
 		endwhile;
 		
