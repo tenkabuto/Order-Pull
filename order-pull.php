@@ -35,23 +35,22 @@ class OrderPull {
 	</tr>
 	</thead>';
 		
-		$args = array(
+		$op_query = new WP_Query();
+		
+		$op_query->query(array(
 			'post_type' => 'shop_order',
 			'tax_query' => array(
 				array(
 					'taxonomy' => 'shop_order_status',
 					'field' => 'slug',
 					'terms' => 'processing'
-				),
-			'post_count' => '-1'
+				)),
+			'posts_per_page' => '2'
 			)
 		);
-
-		query_posts( $args );
-		global $wp_query;
 		
 		// the Loop
-		while (have_posts()) : the_post();
+		while ($op_query->have_posts()) : $op_query->the_post();
 ?>
 		<tr>
 		<?php 
