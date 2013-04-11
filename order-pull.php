@@ -20,7 +20,8 @@ class OrderPull {
 	
 	// For the time being, let's effectively setup a useless page
 	function page_handler() {
-		print '<table id="orders" class="wp-list-table widefat fixed posts" cellspacing="0">
+		print '<div class="wrap">
+	<table id="orders" class="wp-list-table widefat fixed posts" cellspacing="0">
 	<thead>
 	<tr>
 		<th scope="col" class="manage-column">First Name</th>
@@ -69,7 +70,8 @@ class OrderPull {
 <?php
 		endwhile;
 		
-		print '</table>';
+		print '</table>
+		</div>';
 	}
 	
 	// Initialize the plugin
