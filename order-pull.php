@@ -11,7 +11,7 @@ global $wp_version;
   
 $exit_msg = 'Order Pull requires both the plugin "WooCommerce" and WordPress 3.5 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update!</a>';
 
-if ( !(version_compare($wp_version, "3.5", ">=") && class_exists('Woocommerce')) ) {
+if ( version_compare($wp_version, "3.5", "<") && class_exists('Woocommerce') ) {
   exit($exit_msg);
 }
 
