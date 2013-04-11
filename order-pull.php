@@ -9,9 +9,9 @@ Description: Outputting only the WooCommerce order info you need so you can get 
 */
 global $wp_version;
   
-$exit_msg = 'WP Delish requires WordPress 2.8 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update!</a>';
+$exit_msg = 'Order Pull requires both the plugin "WooCommerce" and WordPress 3.5 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please update!</a>';
 
-if (version_compare($wp_version, "2.8", "<")) {
+if (version_compare($wp_version, "3.5", "<")) {
   exit($exit_msg);
 }
 
