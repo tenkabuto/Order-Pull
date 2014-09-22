@@ -32,6 +32,7 @@ class OrderPull {
 		<th scope="col" class="manage-column">City</th>
 		<th scope="col" class="manage-column">State</th>
 		<th scope="col" class="manage-column">ZIP Code</th>
+		<th scope="col" class="manage-column">Country</th>
 	</tr>
 	</thead>';
 		
@@ -61,7 +62,7 @@ class OrderPull {
 		foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".ucwords(strtolower($value))."</td>"; } }
 
 		// These shouldn't be off-case
-		$meta_keys = array('_shipping_state', '_shipping_postcode');
+		$meta_keys = array('_shipping_state', '_shipping_postcode', '_shipping_country');
 		foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".$value."</td>"; } }
 
 		// To check custom field values: $custom_fields = get_post_custom(get_the_ID()); echo "<td>"; foreach ( $custom_fields as $key => $value ) { echo $key . " => " . $value . "<br />"; } echo "</td>"; ?></td>
