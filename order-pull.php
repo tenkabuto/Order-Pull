@@ -40,12 +40,7 @@ class OrderPull {
 		
 		$op_query->query(array(
 			'post_type' => 'shop_order',
-			'tax_query' => array(
-				array(
-					'taxonomy' => 'shop_order_status',
-					'field' => 'slug',
-					'terms' => 'processing'
-				)),
+			'post_status' => 'wc-processing',
 			'posts_per_page' => '-1'
 			)
 		);
