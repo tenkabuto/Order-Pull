@@ -60,7 +60,7 @@ class OrderPull {
 		$meta_keys = array('_shipping_state', '_shipping_postcode', '_shipping_country');
 		foreach($meta_keys as $key) { $ship_shape = get_post_meta(get_the_ID(), $key); foreach ($ship_shape as $value) { echo "<td>".$value."</td>"; } }
 
-		// To check custom field values: $custom_fields = get_post_custom(get_the_ID()); echo "<td>"; foreach ( $custom_fields as $key => $value ) { echo $key . " => " . $value . "<br />"; } echo "</td>"; ?></td>
+		// To check custom field values: $custom_fields = get_post_custom(get_the_ID()); echo "<td>"; foreach ( $custom_fields as $key => $value ) { echo $key . " => " . $value . "<br />"; } echo "</td>"; ?>
 		</tr>
 <?php
 		endwhile;
